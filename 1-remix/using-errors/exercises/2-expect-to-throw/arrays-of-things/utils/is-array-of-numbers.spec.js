@@ -1,6 +1,6 @@
 // #todo
 
-import { isArrayOfNumbers } from './is-array-of-numbers.js';
+import isArrayOfNumbers from './is-array-of-numbers.js';
 
 describe('isArrayOfNumbers: determines if an array contains only valid numbers', () => {
     describe('it returns FALSE when:', () => {

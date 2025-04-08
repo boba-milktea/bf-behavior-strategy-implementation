@@ -11,7 +11,7 @@ try {
 
 console.log('- throw new error -');
 try {
-    throw __;
+    throw new TypeError("null is not a function");
 } catch (err) {
     console.error(err);
 
