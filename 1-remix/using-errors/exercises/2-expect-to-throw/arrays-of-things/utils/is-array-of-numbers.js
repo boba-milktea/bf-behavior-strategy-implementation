@@ -7,12 +7,6 @@
  * @returns {array} a filtered array with only numbers
  */
 
-const isArrayOfNumbers = (array = []) => {
-    if (array.some((item) => !item || Number.isNaN(item))) {
-        throw new TypeError('array is not an array of numbers');
-    }
-
-    return array.filter((item) => Number.isNaN(item));
-};
+const isArrayOfNumbers = (array = []) =>  array.every(item => typeof(item) === "number" && !Number.isNaN(item)); 
 
 export default isArrayOfNumbers;

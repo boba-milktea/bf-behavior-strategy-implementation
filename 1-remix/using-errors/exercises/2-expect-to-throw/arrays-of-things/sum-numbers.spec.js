@@ -2,6 +2,7 @@
 
 import { sumNumbers } from './sum-numbers.js';
 
+
 describe('sumNumbers: sums all the numbers in an array of numbers', () => {
     describe('when the array is not empty, it returns an number', () => {
         it('works when there is many of the same number', () => {

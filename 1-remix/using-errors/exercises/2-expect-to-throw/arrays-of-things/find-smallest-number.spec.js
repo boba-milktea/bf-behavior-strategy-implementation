@@ -2,6 +2,8 @@
 
 import { findSmallestNumber } from './find-smallest-number.js';
 
+
+
 describe('findSmallestNumber: returns the smallest number in an array of numbers', () => {
     describe('when the array is not empty, it returns a number', () => {
         it('works when there is many of the same number', () => {
