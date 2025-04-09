@@ -9,6 +9,14 @@
  * @returns {boolean}
  */
 
+// -------- strategy --------
+/* JavaScript syntax
+1. arrow function with explicit return
+2. use type equal operator  
+*/
+
+const typeEqual = (value) => value == true;
+
 // -------- your solutions --------
 
 for (const solution of [secretSolution]) {
@@ -18,35 +26,35 @@ for (const solution of [secretSolution]) {
     describe(solution.name + ': determines if a value is truthy', () => {
         describe('solution can identify truthy values', () => {
             it('non-empty strings -> true', () => {
-                const actual = solution(_);
+                const actual = solution('5');
                 expect(actual).toEqual(true);
             });
             it('numbers that are not 0 or NaN -> true', () => {
-                const actual = _;
+                const actual = solution(-2);
                 expect(actual).toEqual(true);
             });
             it('true -> true', () => {
-                expect(solution(_)).toEqual(true);
+                expect(solution(true)).toEqual(true);
             });
         });
         describe('solution can identify falsy values', () => {
             it('"" -> flase', () => {
-                _;
+                expect(solution('')).toEqual(false);
             });
             it('0 -> false', () => {
-                _;
+                expect(solution(0)).toEqual(false);
             });
             it('NaN -> false', () => {
-                _;
+                expect(solution(NaN)).toEqual(false);
             });
             it('false -> false', () => {
-                _;
+                expect(solution(false)).toEqual(false);
             });
             it('undefined -> false', () => {
-                _;
+                expect(solution(undefined)).toEqual(false);
             });
             it('null -> false', () => {
-                _;
+                expect(solution(null)).toEqual(false);
             });
         });
     });

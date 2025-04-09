@@ -11,10 +11,52 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
-    describe(solution.name + ': _', () => {
-        describe('_', () => {
-            it('_', () => {});
+/* Strategy 
+Built in method 
+1. arrow function with explicit return 
+2. use methods to return a new array
+ */
+
+const reverseAndConcate = (arrayOfStrings) =>
+    [...arrayOfStrings].reverse().join('');
+
+for (const solution of [secretSolution, reverseAndConcate]) {
+    describe(`${solution.name}: joins reversed strings`, () => {
+        it('returns an empty string when given an empty array', () => {
+            const input = [];
+            const result = solution(input);
+            expect(result).toBe('');
+        });
+
+        it('returns the single string when array has one element', () => {
+            const input = ['hello'];
+            const result = solution(input);
+            expect(result).toBe('hello');
+        });
+
+        it('joins two elements in reverse order', () => {
+            const input = ['hello', 'world'];
+            const result = solution(input);
+            expect(result).toBe('worldhello');
+        });
+
+        it('joins multiple elements in reverse order', () => {
+            const input = ['a', 'b', 'c', 'd'];
+            const result = solution(input);
+            expect(result).toBe('dcba');
+        });
+
+        it('handles strings with spaces and special characters', () => {
+            const input = ['one ', 'two!', '@three'];
+            const result = solution(input);
+            expect(result).toBe('@threetwo!one ');
+        });
+
+        it('does not mutate the original array', () => {
+            const input = ['x', 'y', 'z'];
+            const copy = [...input];
+            solution(input);
+            expect(input).toEqual(copy);
         });
     });
 }

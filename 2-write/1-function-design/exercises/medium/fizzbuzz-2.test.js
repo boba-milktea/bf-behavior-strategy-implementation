@@ -15,13 +15,21 @@
 
 // -------- your solutions --------
 
-const whileLoop = (max) => {
-    let countUp = _;
+const whileLoop = (max = 0) => {
+    let countUp = 0;
     const result = [];
-    while (_) {
+    while (max > 0) {
         const nextEntry =
-            countUp % 15 === 0 ? '_' : _ ? 'buzz' : _ ? 'fizz' : _;
+            countUp % 15 === 0
+                ? 'fizzbuzz'
+                : countUp % 5 === 0
+                ? 'buzz'
+                : countUp % 3 === 0
+                ? 'fizz'
+                : countUp;
         result.push(nextEntry);
+        countUp ++; 
+        max -- ;
     }
     return result;
 };
@@ -30,8 +38,9 @@ const whileLoop = (max) => {
  */
 const oneLineforLoop = (max) => {
     const result = [];
-    for (let i = 0; i < _; )
-        result._((++i % _ ? '' : '_') + (i % _ ? '' : '_') || i);
+    for (let i = -1; i < max-1; ) { 
+        result.push((++i % 3 ? '' : 'fizz') + (i % 5 ? '' : 'buzz') || i);
+      }
     return result;
 
     // https://codeburst.io/javascript-breaking-down-the-shortest-possible-fizzbuzz-answer-94a0ad9d128a
@@ -40,17 +49,17 @@ const oneLineforLoop = (max) => {
 /* describe this solution's strategy
  */
 const manySmallFunctions = (max) => {
-    const threeDivides = (n) => n % _ === 0;
-    const fiveDivides = (n) => n % _ === 0;
-    const fifteenDivides = (n) => n % _ === 0;
+    const threeDivides = (n) => n % 3 === 0;
+    const fiveDivides = (n) => n % 5 === 0;
+    const fifteenDivides = (n) => n % 15 === 0;
 
     const fizzbuzzOrNumber = (num) => {
-        if (_) {
+        if (fifteenDivides(num)) {
             return 'fizzbuzz';
-        } else if (_) {
-            return 'fizz';
-        } else if (_) {
+        } else if (fiveDivides(num)) {
             return 'buzz';
+        } else if (threeDivides(num)) {
+            return 'fizz';
         } else {
             return num;
         }
@@ -58,7 +67,7 @@ const manySmallFunctions = (max) => {
 
     // https://stackoverflow.com/a/33352604
     const arrayOfIndexes = [...Array(max).keys()];
-    const fizzBuzzedArray = arrayOfIndexes.map(_);
+    const fizzBuzzedArray = arrayOfIndexes.map(index => fizzbuzzOrNumber(index));
     return fizzBuzzedArray;
 };
 
@@ -66,20 +75,34 @@ const manySmallFunctions = (max) => {
 
 for (const solution of [
     secretSolution,
-    // whileLoop,
-    // oneLineforLoop,
-    // manySmallFunctions,
+    whileLoop,
+    oneLineforLoop,
+    manySmallFunctions,
 ]) {
     describe(solution.name + ': fizzbuzz', () => {
         describe('numbers divisible by 3', () => {
             it('3 should return an array with the first 3 values', () => {
                 expect(solution(3)).toEqual(['fizzbuzz', 1, 2]);
             });
-            // write more of these
+            it('3 should return an array with the first value', () => {
+                expect(solution(1)).toEqual(['fizzbuzz']);
+            });
         });
         describe('numbers divisible by neither 3 nor 5', () => {
             it('4 should return an array with the first 4 values', () => {
                 expect(solution(4)).toEqual(['fizzbuzz', 1, 2, 'fizz']);
+            });
+            it('8 should return an array with the first 8 values', () => {
+                expect(solution(8)).toEqual([
+                    'fizzbuzz',
+                    1,
+                    2,
+                    'fizz',
+                    4,
+                    'buzz',
+                    'fizz',
+                    7
+                ]);
             });
             // write more of these
         });

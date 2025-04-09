@@ -7,10 +7,22 @@
  * @param {string} [toReverse=''] - the string to reverse
  * @returns {string} the reversed argument
  */
+// -------- strategy --------
+/* Buit in javaScript method
+1. string -> split
+2. reverse -> reverse
+3. join back -> join
+4. empty string -> empty string
 
+*/
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+const reverse1 = (toReverse = '') => toReverse.split('').reverse().join('');
+function reverse2(toReverse = '') {
+    return toReverse.split('').reverse().join('');
+}
+
+for (const solution of [reverse1]) {
     // the main test suite for the function
     describe(solution.name + ': reverses a string', () => {
         it('default parameter is an empty string -> ""', () => {
@@ -22,7 +34,15 @@ for (const solution of [secretSolution]) {
         it('a string with all capital letters', () => {
             expect(solution('ASDF')).toEqual('FDSA');
         });
-        // write at least 5 more tests ...
+        it('a string with all lowercase letters', () => {
+            expect(solution('tee')).toEqual('eet');
+        });
+        it('a string with upper and lower case letters', () => {
+            expect(solution('Drink')).toEqual('knirD');
+        });
+        it('a string with special characters', () => {
+            expect(solution('**water!')).toEqual('!retaw**');
+        });
     });
 }
 

@@ -1,9 +1,9 @@
 // #todo
 
-import isArrayOfNumbers from './is-array-of-numbers.js';
+import { isArrayOfNumbers } from './is-array-of-numbers.js';
 
 describe('isArrayOfNumbers: determines if an array contains only valid numbers', () => {
-    describe('it returns FALSE when:', () => {
+    describe('it returns True when:', () => {
         it('the array is empty', () => {
             const actual = isArrayOfNumbers([]);
             expect(actual).toEqual(true);
@@ -17,7 +17,7 @@ describe('isArrayOfNumbers: determines if an array contains only valid numbers',
             expect(actual).toEqual(true);
         });
     });
-    describe('it returns TRUE when:', () => {
+    describe('it returns False when:', () => {
         it('a single value is not a number', () => {
             const actual = isArrayOfNumbers([-1.5, -1, -0.5, '0', 0.5, 1, 1.5]);
             expect(actual).toEqual(false);

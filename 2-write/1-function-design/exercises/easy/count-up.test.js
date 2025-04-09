@@ -11,7 +11,26 @@
 
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+/* -- recursion: recursive call until it reaches the base case 0 --
+
+  1. create a base case 0 
+  2. create a recursive function call, when the index is creater than 0
+
+  return: an array with all numbers from `start` to 0
+
+*/
+
+const countUp = (max = 0) => (max === 0 ? [0] : countUp(max - 1).concat([max]));
+
+const countUp2 = (max = 0) => {
+    if (max === 0) {
+        return [0];
+    } else {
+        return countUp(max - 1).concat([max]);
+    }
+};
+
+for (const solution of [countUp, countUp2]) {
     // the main test suite for the function
     describe(solution.name + ': counts up from 0', () => {
         it('default parameter is 0 -> [0]', () => {
@@ -23,6 +42,15 @@ for (const solution of [secretSolution]) {
         });
         it('1 -> [0, 1]', () => {
             expect(solution(1)).toEqual([0, 1]);
+        });
+        it('2 -> [0, 1, 2]', () => {
+            expect(solution(2)).toEqual([0, 1, 2]);
+        });
+        it('3 -> [0, 1, 2, 3]', () => {
+            expect(solution(3)).toEqual([0, 1, 2, 3]);
+        });
+        it('5 -> [0, 1, 2, 3, 4, 5]', () => {
+            expect(solution(5)).toEqual([0, 1, 2, 3, 4, 5]);
         });
         // write at least 5 more tests ...
     });

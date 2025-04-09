@@ -19,22 +19,53 @@ const mapFilterReduce = (arr) => {
     const castToNumber = (entry) => Number(entry);
 
     // fill in the array methods and pass in the correct logic
-    const sumOfNumberies = arr._(_)._(_)._(_, _);
+    const sumOfNumberies = arr
+        .map((str) => castToNumber(str))
+        .filter((num) => isNotNaN(num))
+        .reduce((acc, next) => sumNumbers(acc, next), 0);
 
     return sumOfNumberies;
 };
 
 // -------- your solutions --------
 
-for (const solution of [
-    secretSolution,
-    // mapFilterReduce,
-]) {
-    describe(solution.name + ': _', () => {
-        describe('_', () => {
-            it('_', () => {});
-        });
-    });
+for (const solution of [mapFilterReduce]) {
+    describe(
+        solution.name + ': sums all numbery strings in an array of strings',
+        () => {
+            describe('basic functionality', () => {
+                it('sums numeric strings', () => {
+                    expect(solution(['1', '2', '3'])).toEqual(6);
+                });
+
+                it('ignores non-number strings', () => {
+                    expect(solution(['1', 'two', '3'])).toEqual(4);
+                });
+
+                it('ignores NaN values', () => {
+                    expect(solution(['1', NaN, '3'])).toEqual(4);
+                });
+
+                it('works with negative numbers', () => {
+                    expect(solution(['-1', '-2', '3'])).toEqual(0);
+                });
+
+                it('returns 0 for an empty array', () => {
+                    expect(solution([])).toEqual(0);
+                });
+
+                it('returns 0 if all values are non-numbery', () => {
+                    expect(solution(['a', 'b', 'c'])).toEqual(0);
+                });
+
+                it('handles mixed types and whitespace', () => {
+                    expect(solution([' 1 ', '2', 'foo', '3.5', ''])).toEqual(
+                        6.5,
+                    );
+                });
+            });
+        },
+    );
 }
 
 // minified solution for testing your tests
