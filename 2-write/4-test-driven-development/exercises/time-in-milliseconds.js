@@ -18,4 +18,7 @@
  *
  * timeInMilliseconds(0, 1, 1); // 61000
  */
-export const timeInMilliseconds = (h = 0, m = 0, s = 0) => {};
+export const timeInMilliseconds = (h = 0, m = 0, s = 0) => {
+  if (h === 0 && m === 0 && s === 0) return 0;
+  return (h * 3600 + m * 60 + s) * 1000;
+};
