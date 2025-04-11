@@ -14,6 +14,13 @@
  */
 
 // -------- your solutions --------
+// describe this solution's strategy
+/* iteration 
+1. loop until the max
+2. use a flag to count up the number, and check if it satisfied the cases
+3. save the result in an array 
+4. max reaches zero, return the array 
+ */
 
 const whileLoop = (max = 0) => {
     let countUp = 0;
@@ -28,25 +35,40 @@ const whileLoop = (max = 0) => {
                 ? 'fizz'
                 : countUp;
         result.push(nextEntry);
-        countUp ++; 
-        max -- ;
+        countUp++;
+        max--;
     }
     return result;
 };
 
-/* describe this solution's strategy
+// describe this solution's strategy
+/* iteration 
+1. loop until the max
+2  i starts at "-1" because the first number should be 0, 
+3. max minus one, because we start at -1
+4. create a result array  
+5. for loop with no increment
+6. add a prefix increment to the index
+7. if the incremented index can be devided by 3, push fizz, otherwise push an empty string
+8. if the  index can be devided by 5, push buzz, otherwise push an empty string
+9. if both conditions returned an empty string, push the index  
  */
+
 const oneLineforLoop = (max) => {
     const result = [];
-    for (let i = -1; i < max-1; ) { 
+    for (let i = -1; i < max - 1; ) {
         result.push((++i % 3 ? '' : 'fizz') + (i % 5 ? '' : 'buzz') || i);
-      }
+    }
     return result;
 
     // https://codeburst.io/javascript-breaking-down-the-shortest-possible-fizzbuzz-answer-94a0ad9d128a
 };
 
 /* describe this solution's strategy
+javascript built-in method
+1. create an array filed from 0 to max, retrieve the keys 
+2. map through the keys (index) and check if the keys(index) fit into the cases
+3. return a new array 
  */
 const manySmallFunctions = (max) => {
     const threeDivides = (n) => n % 3 === 0;
@@ -67,7 +89,9 @@ const manySmallFunctions = (max) => {
 
     // https://stackoverflow.com/a/33352604
     const arrayOfIndexes = [...Array(max).keys()];
-    const fizzBuzzedArray = arrayOfIndexes.map(index => fizzbuzzOrNumber(index));
+    const fizzBuzzedArray = arrayOfIndexes.map((index) =>
+        fizzbuzzOrNumber(index),
+    );
     return fizzBuzzedArray;
 };
 
@@ -101,7 +125,7 @@ for (const solution of [
                     4,
                     'buzz',
                     'fizz',
-                    7
+                    7,
                 ]);
             });
             // write more of these
